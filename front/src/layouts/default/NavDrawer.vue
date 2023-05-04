@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer v-model="appStore.getShowSideBar">
+    <v-navigation-drawer v-model="appStore.showSideBar">
         <template v-slot:prepend>
             <v-list-item lines="two" :title="userStore.getUserName" subtitle="Logged in">
                 <template v-slot:prepend>
@@ -14,18 +14,8 @@
 
         <v-list density="compact" nav v-for="item in navItems">
             <v-list-item @click="router.push({ path: item.path })" :prepend-icon="item.icon" :title="item.title"
-                :value="item.title"></v-list-item>
+                :active="isOnPage(item.path)" :value="item.title"></v-list-item>
         </v-list>
-
-        <template v-slot:append>
-            <v-divider></v-divider>
-            <v-list-item active-color="primary" class="py-4" href="https://www.zwtools.eu">
-                <template v-slot:prepend>
-                    <v-icon icon="mdi-apps" size="x-large"></v-icon>
-                    <v-list-item-title>All applications</v-list-item-title>
-                </template>
-            </v-list-item>
-        </template>
     </v-navigation-drawer>
 </template>
 
@@ -51,4 +41,8 @@ const navItems = [
     { title: "Balance", path: "/balance", icon: "mdi-scale-balance" },
     { title: "Stats", path: "/stats", icon: "mdi-chart-line" },
 ]
+
+function isOnPage(page: string): boolean {
+    return router.currentRoute.value.path == page
+}
 </script>

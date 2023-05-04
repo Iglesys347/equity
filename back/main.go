@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	balance2 "github.com/Iglesys347/equity/api/handlers/balance"
 	"github.com/Iglesys347/equity/api/handlers/expenses"
 	"github.com/Iglesys347/equity/api/handlers/users"
 	"github.com/Iglesys347/equity/db"
@@ -89,6 +90,8 @@ func main() {
 	mux.HandleFunc("/users", users.UsersHandler)
 	// Handling GET and PUT requests on /users/{id}
 	mux.HandleFunc("/users/", users.UserWithIDHandler)
+
+	mux.HandleFunc("/balance/", balance2.BalanceHandler)
 
 	server := http.Server{
 		Addr:    ":" + port,

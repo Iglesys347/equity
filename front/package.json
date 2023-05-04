@@ -11,10 +11,12 @@
   "dependencies": {
     "@mdi/font": "7.0.96",
     "axios": "^1.3.6",
+    "chart.js": "^4.2.1",
     "core-js": "^3.8.3",
     "pinia": "^2.0.23",
     "roboto-fontface": "*",
     "vue": "^3.2.13",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
     "webfontloader": "^1.0.0"

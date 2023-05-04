@@ -86,6 +86,20 @@ func GetUserExpense(userId int) (*models.Expense, error) {
 	return &expense, nil
 }
 
+func GetUserTotalExpense(userId int, year int, month int) (float64, error) {
+	sqlCmd := "SELECT SUM(amount) FROM expenses WHERE user_id=$1 AND EXTRACT(YEAR FROM date) = $2 AND EXTRACT(MONTH FROM date) = $3"
+	result := db.QueryRow(sqlCmd, userId, year, month)
+	if result.Err() != nil {
+		return 0, result.Err()
+	}
+	var expense float64
+	err := result.Scan(&expense)
+	if err != nil {
+		return 0, err
+	}
+	return expense, nil
+}
+
 func UpdateExpense(expense models.Expense, overwrite bool) (bool, error) {
 	var sqlStatement string
 	var result sql.Result
